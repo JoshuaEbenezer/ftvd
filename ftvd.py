@@ -157,7 +157,7 @@ def getC(image,kernel):
     KtF = np.real(np.fft.ifft2(np.conj(eigsK) * np.fft.fft2(image)))    # equation 2.4 and 2.3 in Wang et al. -> transpose(kernel) * image 
     diff_kernelX = np.expand_dims(np.array([1,-1]),axis=1)
     diff_kernelY = np.expand_dims(np.array([[1],[-1]]),axis=0)
-    eigsDtD = np.abs(psf2otf(diff_kernel,sizeF))**2 + np.abs(psf2otf(diff_kernel,sizeF))**2 # Fourier transform of D transpose * D
+    eigsDtD = np.abs(psf2otf(diff_kernelX,sizeF))**2 + np.abs(psf2otf(diff_kernelY,sizeF))**2 # Fourier transform of D transpose * D
     eigsKtK = np.abs(eigsK)**2 # Fourier transform of K transpose * K
     return (eigsK,KtF,eigsDtD,eigsKtK)
 def ForwardD(U):
